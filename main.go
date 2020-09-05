@@ -26,8 +26,8 @@ func main() {
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
-	origin = "https://github.com/" + getOrigin(origin)
-	open.Run(origin)
+	originUrl := "https://github.com/" + getOrigin(origin)
+	open.Run(originUrl)
 }
 
 func getOrigin(str string) string {
