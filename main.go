@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"os/exec"
 	"regexp"
 	"strings"
+
+	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
 	origin = "https://github.com/" + getOrigin(origin)
-	fmt.Println(origin)
+	open.Run(origin)
 }
 
 func getOrigin(str string) string {
