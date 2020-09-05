@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -9,8 +10,16 @@ import (
 )
 
 func main() {
-	out, _ := exec.Command("git", "remote", "-v").Output()
+	out, err := exec.Command("git", "remote", "-v").Output()
+	if err != nil {
+		fmt.Println("fatal: not a git repository (or any of the parent directories): .git")
+		return
+	}
 	stringified := string(out)
+	if stringified == "" {
+		fmt.Println("fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.")
+		return
+	}
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
