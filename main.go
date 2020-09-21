@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"regexp"
 	"strings"
 
+	"github.com/hxrxchang/hubrowse/git_repo"
 	"github.com/skratchdot/open-golang/open"
 )
 
@@ -26,14 +26,6 @@ func main() {
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
-	originUrl := getOrigin(origin)
+	originUrl := git_repo.GetRepoUrl(origin)
 	open.Run(originUrl)
-}
-
-func getOrigin(str string) string {
-	// put "?:" not to capture
-	reg := regexp.MustCompile(`(?:git@github.com:|https:\/\/github.com\/)(.*).git`)
-	s := reg.FindStringSubmatch(str)
-	// get value of s[1] to get captured value by "(.*)"
-	return "https://github.com/" + s[1]
 }
