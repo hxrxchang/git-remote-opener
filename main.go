@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/hxrxchang/hubrowse/git_repo"
+	"github.com/hxrxchang/git-remote-opener/git_repo"
 	"github.com/skratchdot/open-golang/open"
 )
 

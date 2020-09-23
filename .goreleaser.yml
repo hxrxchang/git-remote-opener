@@ -1,4 +1,4 @@
-project_name: hubrowse
+project_name: git-remote-opener
 env:
   - GO111MODULE=on
 before:
@@ -6,7 +6,7 @@ before:
     - go mod tidy
 builds:
   - main: .
-    binary: hubrowse
+    binary: git-remote-opener
     ldflags:
       - -s -w
       - -X main.Version={{.Version}}

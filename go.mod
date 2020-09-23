@@ -1,4 +1,4 @@
-module github.com/hxrxchang/hubrowse
+module github.com/hxrxchang/git-remote-opener
 
 go 1.14
 
