@@ -1,6 +1,12 @@
 # git-remote-opener
 
-git-remote-opener is a command line tool to open a GitHub repository page.
+git-remote-opener is a command line tool to open a web page of a remote repository.
+
+The following git hosting services are operation checked.
+
+- GitHub
+- GitLab
+- Bitbucket
 
 ## Installation
 
@@ -18,4 +24,4 @@ $ cd <path-to-your-project>
 $ git-remote-opener
 ```
 
-Then, browser will open GitHub repository page of your project.
+Then, browser will open a remote repository's page of your project.
