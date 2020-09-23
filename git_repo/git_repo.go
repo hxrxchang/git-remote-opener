@@ -28,8 +28,8 @@ func GetRepoUrl(remoteUrlString string) (string, error) {
 }
 
 func buildRepoInfo(remoteUrlString string, regexpString string) (RepoInfo, error) {
-	regexp := regexp.MustCompile(regexpString)
-	matchingResult := regexp.FindStringSubmatch(remoteUrlString)
+	repoInfoRegexp := regexp.MustCompile(regexpString)
+	matchingResult := repoInfoRegexp.FindStringSubmatch(remoteUrlString)
 	if len(matchingResult) == 0 {
 		return RepoInfo{"", "", ""}, errors.New("something went wrong")
 	}
