@@ -1,17 +1,21 @@
-# hubrowse
+# git-remote-opener
 
-hubrowse is a command line tool to open a GitHub repository page.
+git-remote-opener is a command line tool to open a GitHub repository page.
 
 ## Installation
 
-Download the binary from [GitHub Releases](https://github.com/hxrxchang/hubrowse/releases) and drop it in your \$PATH.  
+```
+$ go get github.com/hxrxchang/git-remote-opener
+```
+
+If you don't use Go, download the binary from [GitHub Releases](https://github.com/hxrxchang/git-remote-opener/releases) and drop it in your \$PATH.  
 (For example, `/usr/local/bin` or `$HOME/bin`)
 
 ## Usage
 
 ```
 $ cd <path-to-your-project>
-$ hubrowse
+$ git-remote-opener
 ```
 
 Then, browser will open GitHub repository page of your project.
