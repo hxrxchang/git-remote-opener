@@ -26,10 +26,10 @@ func main() {
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
-	originUrl, err := git_repo.GetRepoUrl(origin)
+	originURL, err := git_repo.GetRepoUrl(origin)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	open.Run(originUrl)
+	open.Run(originURL)
 }
