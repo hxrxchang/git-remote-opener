@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/hxrxchang/git-remote-opener/git_repo"
+	"github.com/hxrxchang/git-remote-opener/gitrepo"
 	"github.com/skratchdot/open-golang/open"
 )
 
@@ -26,7 +26,7 @@ func main() {
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
-	originURL, err := git_repo.GetRepoUrl(origin)
+	originURL, err := gitrepo.GetRepoURL(origin)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
