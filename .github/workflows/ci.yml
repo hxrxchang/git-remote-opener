@@ -35,4 +35,4 @@ jobs:
         run: go build -v .
 
       - name: Lint check
-        run: golint -set_exit_status
+        run: golint -set_exit_status ./...
