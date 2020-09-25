@@ -29,6 +29,7 @@ func main() {
 	originURL, err := git_repo.GetRepoUrl(origin)
 	if err != nil {
 		fmt.Println(err)
+		os.Exit(1)
 		return
 	}
 	open.Run(originURL)
