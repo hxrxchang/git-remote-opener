@@ -31,8 +31,8 @@ jobs:
       - name: Get golint
         run: go get -u golang.org/x/lint/golint
 
-      - name: Build
-        run: go build -v .
+      - name: Build Check
+        run: go build -v cmd/git-remote-opener/main.go
 
       - name: Lint check
         run: golint -set_exit_status ./...
