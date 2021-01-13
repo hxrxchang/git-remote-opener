@@ -5,8 +5,8 @@ before:
   hooks:
     - go mod tidy
 builds:
-  - main: .
-    binary: git-remote-opener
+  - main: ./cmd/git-remote-opener/main.go
+    binary: main
     ldflags:
       - -s -w
       - -X main.Version={{.Version}}
