@@ -11,7 +11,7 @@ The following git hosting services are operation checked.
 ## Installation
 
 ```
-$ go get github.com/hxrxchang/git-remote-opener
+$ go get github.com/hxrxchang/git-remote-opener/cmd/git-remote-opener
 ```
 
 If you don't use Go, download the binary from [GitHub Releases](https://github.com/hxrxchang/git-remote-opener/releases) and drop it in your \$PATH.  
