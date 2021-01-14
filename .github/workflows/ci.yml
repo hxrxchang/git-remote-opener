@@ -36,3 +36,6 @@ jobs:
 
       - name: Lint check
         run: golint -set_exit_status ./...
+
+      - name: Fmt Check
+        run: test -z $(gofmt -l ./)
