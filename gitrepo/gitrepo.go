@@ -36,5 +36,5 @@ func buildRepoInfo(remoteURLString string, regexpString string) (repoInfo, error
 	if len(matchingResult) == 0 {
 		return repoInfo{"", "", ""}, errors.New(invalidURLMessage)
 	}
-return repoInfo{matchingResult[1], matchingResult[2], matchingResult[3]}, nil
+	return repoInfo{matchingResult[1], matchingResult[2], matchingResult[3]}, nil
 }
