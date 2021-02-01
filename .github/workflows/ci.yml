@@ -38,3 +38,6 @@ jobs:
 
       - name: Fmt Check
         run: test -z $(gofmt -l ./)
+
+      - name: Unit Test
+        run: go test -race ./...
