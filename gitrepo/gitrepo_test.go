@@ -5,22 +5,31 @@ import (
 )
 
 func TestGetRepoURLWithSshString(t *testing.T) {
-	result, _ := GetRepoURL("origin  git@github.com:hxrxchang/git-remote-opener.git (fetch)")
+	result, err := GetRepoURL("origin  git@github.com:hxrxchang/git-remote-opener.git (fetch)")
+	if err != nil {
+		t.Error(err)
+	}
 	if result != "https://github.com/hxrxchang/git-remote-opener" {
-		t.Fatal("test failed")
+		t.Fatal("must return valid url")
 	}
 }
 
 func TestGetRepoURLWithHttpsString(t *testing.T) {
-	result, _ := GetRepoURL("origin	https://github.com/hxrxchang/git-remote-opener.git (fetch)")
+	result, err := GetRepoURL("origin	https://github.com/hxrxchang/git-remote-opener.git (fetch)")
+	if err != nil {
+		t.Error(err)
+	}
 	if result != "https://github.com/hxrxchang/git-remote-opener" {
-		t.Fatal("test failed")
+		t.Fatal("must return valid url")
 	}
 }
 
 func TestGetRepoURLWithInvalidString(t *testing.T) {
-	result, _ := GetRepoURL("invalid string")
+	result, err := GetRepoURL("invalid string")
+	if err == nil {
+		t.Error("must return error")
+	}
 	if result != "" {
-		t.Fatal("test failed")
+		t.Fatal("must return empty string")
 	}
 }
