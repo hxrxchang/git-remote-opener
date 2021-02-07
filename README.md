@@ -1,3 +1,4 @@
+![CI](https://github.com/hxrxchang/git-remote-opener/workflows/CI/badge.svg)
 # git-remote-opener
 
 git-remote-opener is a command line tool to open a web page of a remote repository.
