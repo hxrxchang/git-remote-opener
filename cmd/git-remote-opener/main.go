@@ -10,8 +10,20 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-func runCommand() int {
-	out, err := exec.Command("git", "remote", "-v").Output()
+type ICommander interface {
+	GetGitRemoteInfo() ([]byte, error)
+}
+
+type Commander struct{}
+
+func (c *Commander) GetGitRemoteInfo() ([]byte, error) {
+	out, err := exec.Command("git", "remote", "-v").CombinedOutput()
+	return out, err
+}
+
+func execute() int {
+	var commander ICommander = &Commander{}
+	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
 		fmt.Println("fatal: not a git repository (or any of the parent directories): .git")
 		return 1
@@ -42,5 +54,5 @@ func runCommand() int {
 }
 
 func main() {
-	os.Exit(runCommand())
+	os.Exit(execute())
 }
