@@ -27,14 +27,13 @@ jobs:
               dep ensure
           fi
 
-      - name: Get golint
-        run: go get -u golang.org/x/lint/golint
-
       - name: Build Check
         run: go build -v cmd/git-remote-opener/main.go
 
-      - name: Lint check
-        run: golint -set_exit_status ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
 
       - name: Fmt Check
         run: test -z $(gofmt -l ./)
