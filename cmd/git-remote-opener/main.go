@@ -16,11 +16,13 @@ func runCommand() int {
 		fmt.Println("fatal: not a git repository (or any of the parent directories): .git")
 		return 1
 	}
+
 	stringified := string(out)
 	if stringified == "" {
 		fmt.Println("fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.")
 		return 1
 	}
+
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
@@ -29,7 +31,13 @@ func runCommand() int {
 		fmt.Println(err)
 		return 1
 	}
-	open.Run(originURL)
+
+	error := open.Run(originURL)
+	if err != nil {
+		fmt.Println(error)
+		return 1
+	}
+
 	return 0
 }
 
