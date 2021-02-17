@@ -70,3 +70,17 @@ func (mr *MockICommanderMockRecorder) PrintErr(msg interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrintErr", reflect.TypeOf((*MockICommander)(nil).PrintErr), msg)
 }
+
+// Open mocks base method
+func (m *MockICommander) Open(arg0 string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Open", arg0)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Open indicates an expected call of Open
+func (mr *MockICommanderMockRecorder) Open(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Open", reflect.TypeOf((*MockICommander)(nil).Open), arg0)
+}
