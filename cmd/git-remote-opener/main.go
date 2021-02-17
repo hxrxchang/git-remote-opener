@@ -31,7 +31,7 @@ func (c *Commander) PrintErr(msg error) {
 	fmt.Println(msg)
 }
 
-func execute() int {
+func _main() int {
 	var commander ICommander = &Commander{}
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
@@ -66,5 +66,5 @@ func execute() int {
 }
 
 func main() {
-	os.Exit(execute())
+	os.Exit(_main())
 }
