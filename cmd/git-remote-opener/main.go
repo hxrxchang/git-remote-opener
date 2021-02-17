@@ -14,6 +14,7 @@ type ICommander interface {
 	GetGitRemoteInfo() ([]byte, error)
 	Printf(msg string)
 	PrintErr(msg error)
+	Open(string) error
 }
 
 type Commander struct{}
@@ -29,6 +30,11 @@ func (c *Commander) Printf(msg string) {
 
 func (c *Commander) PrintErr(msg error) {
 	fmt.Println(msg)
+}
+
+func (c *Commander) Open(url string) error {
+	err := open.Run(url)
+	return err
 }
 
 func _main(commander ICommander) int {
@@ -55,7 +61,7 @@ func _main(commander ICommander) int {
 		return 1
 	}
 
-	error := open.Run(originURL)
+	error := commander.Open(originURL)
 	if err != nil {
 		commander.PrintErr(error)
 		return 1
