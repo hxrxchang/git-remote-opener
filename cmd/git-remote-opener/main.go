@@ -31,8 +31,7 @@ func (c *Commander) PrintErr(msg error) {
 	fmt.Println(msg)
 }
 
-func _main() int {
-	var commander ICommander = &Commander{}
+func _main(commander ICommander) int {
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
 		msg := "fatal: not a git repository (or any of the parent directories): .git"
@@ -66,5 +65,5 @@ func _main() int {
 }
 
 func main() {
-	os.Exit(_main())
+	os.Exit(_main(&Commander{}))
 }
