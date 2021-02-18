@@ -21,7 +21,6 @@ type Commander struct{}
 
 func (c *Commander) GetGitRemoteInfo() ([]byte, error) {
 	out, err := exec.Command("git", "remote", "-v").CombinedOutput()
-	fmt.Println(err)
 	return out, err
 }
 
