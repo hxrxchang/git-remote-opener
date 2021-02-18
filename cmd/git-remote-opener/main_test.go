@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/golang/mock/gomock"
@@ -20,5 +21,39 @@ func Test_Main(t *testing.T) {
 
 	if result != 0 {
 		t.Fatal("result must be 0")
+	}
+}
+
+func Test_MainWhenNotGitRepo(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mockCommander := mock_main.NewMockICommander(ctrl)
+	msg := "fatal: not a git repository (or any of the parent directories): .git"
+	out := []byte(msg)
+	err := errors.New("exit status 128")
+	mockCommander.EXPECT().GetGitRemoteInfo().Return(out, err)
+	mockCommander.EXPECT().Println(msg)
+
+	result := _main(mockCommander)
+
+	if result != 1 {
+		t.Fatal("result must be 1")
+	}
+}
+
+func Test_MainWhenWithoutGitRemote(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mockCommander := mock_main.NewMockICommander(ctrl)
+	out := []byte("")
+	mockCommander.EXPECT().GetGitRemoteInfo().Return(out, nil)
+	mockCommander.EXPECT().Println("fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.")
+
+	result := _main(mockCommander)
+
+	if result != 1 {
+		t.Fatal("result must be 1")
 	}
 }
