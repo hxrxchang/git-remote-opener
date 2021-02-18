@@ -12,7 +12,7 @@ import (
 
 type ICommander interface {
 	GetGitRemoteInfo() ([]byte, error)
-	Printf(msg string)
+	Println(msg string)
 	PrintErr(msg error)
 	Open(string) error
 }
@@ -21,10 +21,11 @@ type Commander struct{}
 
 func (c *Commander) GetGitRemoteInfo() ([]byte, error) {
 	out, err := exec.Command("git", "remote", "-v").CombinedOutput()
+	fmt.Println(err)
 	return out, err
 }
 
-func (c *Commander) Printf(msg string) {
+func (c *Commander) Println(msg string) {
 	fmt.Println(msg)
 }
 
@@ -41,14 +42,14 @@ func _main(commander ICommander) int {
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
 		msg := "fatal: not a git repository (or any of the parent directories): .git"
-		commander.Printf(msg)
+		commander.Println(msg)
 		return 1
 	}
 
 	stringified := string(out)
 	if stringified == "" {
 		msg := "fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists."
-		commander.Printf(msg)
+		commander.Println(msg)
 		return 1
 	}
 

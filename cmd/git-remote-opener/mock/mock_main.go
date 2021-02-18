@@ -47,16 +47,16 @@ func (mr *MockICommanderMockRecorder) GetGitRemoteInfo() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGitRemoteInfo", reflect.TypeOf((*MockICommander)(nil).GetGitRemoteInfo))
 }
 
-// Printf mocks base method
-func (m *MockICommander) Printf(msg string) {
+// Println mocks base method
+func (m *MockICommander) Println(msg string) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "Printf", msg)
+	m.ctrl.Call(m, "Println", msg)
 }
 
-// Printf indicates an expected call of Printf
-func (mr *MockICommanderMockRecorder) Printf(msg interface{}) *gomock.Call {
+// Println indicates an expected call of Println
+func (mr *MockICommanderMockRecorder) Println(msg interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Printf", reflect.TypeOf((*MockICommander)(nil).Printf), msg)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Println", reflect.TypeOf((*MockICommander)(nil).Println), msg)
 }
 
 // PrintErr mocks base method
