@@ -5,14 +5,12 @@ import (
 	"regexp"
 )
 
-// RepoInfo is a type of expressing git repository information
 type RepoInfo struct {
 	Hostname, User, Repo string
 }
 
 const invalidURLMessage string = "invalid git remote url.\nPlease run 'git remote -v' to check it."
 
-// GetRepoURL is a function to get string which means git remote repository's url and is started with https://.+
 func GetRepoURL(remoteURLString string) (string, error) {
 	whenSSHRegexp := regexp.MustCompile(`^origin\s+git@`)
 	whenHTTPSRegexp := regexp.MustCompile(`^origin\s+https:`)
