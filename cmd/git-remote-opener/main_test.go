@@ -49,7 +49,7 @@ func Test_MainWhenWithoutGitRemote(t *testing.T) {
 	mockCommander := mock_main.NewMockICommander(ctrl)
 	out := []byte("")
 	mockCommander.EXPECT().GetGitRemoteInfo().Return(out, nil)
-	mockCommander.EXPECT().Println("fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.")
+	mockCommander.EXPECT().Println("The remote repository is not configured.")
 
 	result := _main(mockCommander)
 

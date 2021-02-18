@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"unsafe"
 
 	"github.com/hxrxchang/git-remote-opener/gitrepo"
 	"github.com/skratchdot/open-golang/open"
@@ -40,14 +41,13 @@ func (c *Commander) Open(url string) error {
 func _main(commander ICommander) int {
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
-		msg := "fatal: not a git repository (or any of the parent directories): .git"
-		commander.Println(msg)
+		commander.Println(*(*string)(unsafe.Pointer(&out)))
 		return 1
 	}
 
 	stringified := string(out)
 	if stringified == "" {
-		msg := "fatal: 'origin' does not appear to be a git repository\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists."
+		msg := "The remote repository is not configured."
 		commander.Println(msg)
 		return 1
 	}
