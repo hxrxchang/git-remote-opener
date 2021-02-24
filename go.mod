@@ -1,6 +1,6 @@
 module github.com/hxrxchang/git-remote-opener
 
-go 1.14
+go 1.16
 
 require (
 	github.com/golang/mock v1.4.4
