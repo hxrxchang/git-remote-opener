@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/hxrxchang/git-remote-opener/gitrepo"
+	gitrepo "github.com/hxrxchang/git-remote-opener"
 	"github.com/skratchdot/open-golang/open"
 )
 
