@@ -57,7 +57,7 @@ func _main(commander ICommander) int {
 	origin := splited[0]
 	originURL, err := gitrepo.GetRepoURL(origin)
 	if err != nil {
-		commander.PrintErr((err))
+		commander.PrintErr(err)
 		return 1
 	}
 
