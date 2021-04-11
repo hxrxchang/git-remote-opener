@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unsafe"
 
-	gitrepo "github.com/hxrxchang/git-remote-opener"
+	repoinfo "github.com/hxrxchang/git-remote-opener"
 	"github.com/skratchdot/open-golang/open"
 )
 
@@ -55,7 +55,7 @@ func _main(commander ICommander) int {
 	replaced := strings.Replace(stringified, `\n`, "\n", -1)
 	splited := strings.Split(replaced, "\n")
 	origin := splited[0]
-	originURL, err := gitrepo.GetRepoURL(origin)
+	originURL, err := repoinfo.GetRepoURL(origin)
 	if err != nil {
 		commander.PrintErr(err)
 		return 1
