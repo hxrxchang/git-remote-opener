@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -39,6 +40,11 @@ func (c *Commander) Open(url string) error {
 }
 
 func _main(commander ICommander) int {
+	branchFlag := flag.Bool("branch", false, "open page with specifying branch")
+	flag.Parse()
+	if *branchFlag {
+		fmt.Println("11111111111")
+	}
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
 		commander.Println(*(*string)(unsafe.Pointer(&out)))
