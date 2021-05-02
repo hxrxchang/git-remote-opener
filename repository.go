@@ -1,4 +1,4 @@
-package repoinfo
+package gro
 
 import (
 	"errors"
