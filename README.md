@@ -13,7 +13,7 @@ The following git hosting services are operation checked.
 ## Installation
 
 ```
-$ go get github.com/hxrxchang/git-remote-opener/cmd/gro
+$ go get github.com/hxrxchang/git-remote-opener/v2/cmd/gro
 ```
 
 If you don't use Go, download the binary from [GitHub Releases](https://github.com/hxrxchang/git-remote-opener/releases) and drop it in your \$PATH.  
