@@ -1,4 +1,4 @@
-module github.com/hxrxchang/git-remote-opener
+module github.com/hxrxchang/git-remote-opener/v2
 
 go 1.16
 
