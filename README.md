@@ -1,4 +1,5 @@
 ![CI](https://github.com/hxrxchang/git-remote-opener/workflows/CI/badge.svg)
+
 # git-remote-opener
 
 git-remote-opener is a command line tool to open a web page of a remote repository.
@@ -12,7 +13,7 @@ The following git hosting services are operation checked.
 ## Installation
 
 ```
-$ go get github.com/hxrxchang/git-remote-opener/cmd/git-remote-opener
+$ go get github.com/hxrxchang/git-remote-opener/cmd/gro
 ```
 
 If you don't use Go, download the binary from [GitHub Releases](https://github.com/hxrxchang/git-remote-opener/releases) and drop it in your \$PATH.  

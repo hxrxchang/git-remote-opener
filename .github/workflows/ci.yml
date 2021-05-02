@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Build Check
-        run: go build -v cmd/git-remote-opener/main.go
+        run: go build -v cmd/gro/main.go
 
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
