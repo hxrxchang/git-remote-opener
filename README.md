@@ -12,8 +12,8 @@ The following git hosting services are operation checked.
 
 ## Installation
 
-```
-$ go get github.com/hxrxchang/git-remote-opener/v2/cmd/gro
+```sh
+go get github.com/hxrxchang/git-remote-opener/v2/cmd/gro
 ```
 
 If you don't use Go, you can download the binary from [GitHub Releases](https://github.com/hxrxchang/git-remote-opener/releases) and drop it in your \$PATH.  
@@ -21,9 +21,9 @@ If you don't use Go, you can download the binary from [GitHub Releases](https://
 
 ## Usage
 
-```
-$ cd <path-to-your-project>
-$ gro
+```sh
+cd <path-to-your-project>
+gro
 ```
 
 Then, browser will open a remote repository's page of your project.
