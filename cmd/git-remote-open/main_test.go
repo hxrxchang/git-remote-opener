@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	mock_main "github.com/hxrxchang/git-remote-opener/v2/cmd/gro/mock"
+	mock_main "github.com/hxrxchang/git-remote-opener/v3/cmd/git-remote-open/mock"
 )
 
 func Test_Main(t *testing.T) {
