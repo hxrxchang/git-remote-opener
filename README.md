@@ -23,7 +23,7 @@ If you don't use Go, you can download the binary from [GitHub Releases](https://
 
 ```sh
 cd <path-to-your-project>
-gro
+git remote-open
 ```
 
 Then, browser will open a remote repository's page of your project.

@@ -5,7 +5,7 @@ before:
   hooks:
     - go mod tidy
 builds:
-  - main: ./cmd/gro/main.go
+  - main: ./cmd/git-remote-open/main.go
     binary: git-remote-open
     ldflags:
       - -s -w
