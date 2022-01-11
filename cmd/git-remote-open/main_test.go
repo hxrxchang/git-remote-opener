@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"errors"
+	"io"
+	"os"
 	"testing"
 
 	"github.com/golang/mock/gomock"
@@ -25,35 +28,65 @@ func Test_Main(t *testing.T) {
 }
 
 func Test_MainWhenNotGitRepo(t *testing.T) {
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	stdout := os.Stdout
+	os.Stdout = w
+
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	mockCommander := mock_main.NewMockICommander(ctrl)
 	msg := "fatal: not a git repository (or any of the parent directories): .git"
 	out := []byte(msg)
-	err := errors.New("exit status 128")
+	err = errors.New("exit status 128")
 	mockCommander.EXPECT().GetGitRemoteInfo().Return(out, err)
-	mockCommander.EXPECT().Println(msg)
 
 	result := _main(mockCommander)
-
 	if result != 1 {
 		t.Fatal("result must be 1")
+	}
+
+	os.Stdout = stdout
+	w.Close()
+
+	var buf bytes.Buffer
+	io.Copy(&buf, r)
+	if buf.String() != msg {
+		t.Errorf("output must be %s", msg)
 	}
 }
 
 func Test_MainWhenWithoutGitRemote(t *testing.T) {
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	stdout := os.Stdout
+	os.Stdout = w
+
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	mockCommander := mock_main.NewMockICommander(ctrl)
 	out := []byte("")
 	mockCommander.EXPECT().GetGitRemoteInfo().Return(out, nil)
-	mockCommander.EXPECT().Println("The remote repository is not configured.")
 
 	result := _main(mockCommander)
 
 	if result != 1 {
 		t.Fatal("result must be 1")
+	}
+
+	os.Stdout = stdout
+	w.Close()
+
+	var buf bytes.Buffer
+	io.Copy(&buf, r)
+	msg := "The remote repository is not configured."
+	if buf.String() != msg {
+		t.Errorf("output must be %s", msg)
 	}
 }
