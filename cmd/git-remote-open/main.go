@@ -38,7 +38,7 @@ func _main(commander ICommander) int {
 	stringified := string(out)
 	if stringified == "" {
 		msg := "The remote repository is not configured."
-		fmt.Printf("%s",msg)
+		fmt.Printf("%s", msg)
 		return 1
 	}
 
