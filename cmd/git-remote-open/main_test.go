@@ -53,7 +53,10 @@ func Test_MainWhenNotGitRepo(t *testing.T) {
 	w.Close()
 
 	var buf bytes.Buffer
-	io.Copy(&buf, r)
+	_, err = io.Copy(&buf, r)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if buf.String() != msg {
 		t.Errorf("output must be %s", msg)
 	}
@@ -84,7 +87,10 @@ func Test_MainWhenWithoutGitRemote(t *testing.T) {
 	w.Close()
 
 	var buf bytes.Buffer
-	io.Copy(&buf, r)
+	_, err = io.Copy(&buf, r)
+	if err != nil {
+		t.Fatal(err)
+	}
 	msg := "The remote repository is not configured."
 	if buf.String() != msg {
 		t.Errorf("output must be %s", msg)
