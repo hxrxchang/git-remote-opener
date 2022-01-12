@@ -2,6 +2,7 @@ package gro
 
 import (
 	"errors"
+	"fmt"
 	"regexp"
 )
 
@@ -9,7 +10,7 @@ type RepoInfo struct {
 	Hostname, User, Repo string
 }
 
-const invalidURLMessage string = "invalid git remote url.\nPlease run 'git remote -v' to check it."
+const invalidURLMessage string = "invalid git remote url.\nPlease run 'git remote -v' to check it"
 
 func GetRepoURL(remoteURLString string) (string, error) {
 	whenSSHRegexp := regexp.MustCompile(`^origin\s+git@`)
@@ -26,7 +27,8 @@ func GetRepoURL(remoteURLString string) (string, error) {
 	if repoInfoErr != nil {
 		return "", errors.New(invalidURLMessage)
 	}
-	return "https://" + repoInfoVal.Hostname + "/" + repoInfoVal.User + "/" + repoInfoVal.Repo, nil
+	s := fmt.Sprintf("https://%s/%s/%s", repoInfoVal.Hostname, repoInfoVal.User, repoInfoVal.Repo)
+	return s, nil
 }
 
 func buildRepoInfo(remoteURLString string, regexpString string) (RepoInfo, error) {

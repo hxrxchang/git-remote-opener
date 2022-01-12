@@ -13,8 +13,6 @@ import (
 
 type ICommander interface {
 	GetGitRemoteInfo() ([]byte, error)
-	Println(msg string)
-	PrintErr(msg error)
 	Open(string) error
 }
 
@@ -25,14 +23,6 @@ func (c *Commander) GetGitRemoteInfo() ([]byte, error) {
 	return out, err
 }
 
-func (c *Commander) Println(msg string) {
-	fmt.Println(msg)
-}
-
-func (c *Commander) PrintErr(msg error) {
-	fmt.Println(msg)
-}
-
 func (c *Commander) Open(url string) error {
 	err := open.Run(url)
 	return err
@@ -41,14 +31,14 @@ func (c *Commander) Open(url string) error {
 func _main(commander ICommander) int {
 	out, err := commander.GetGitRemoteInfo()
 	if err != nil {
-		commander.Println(*(*string)(unsafe.Pointer(&out)))
+		fmt.Printf("%s", *(*string)(unsafe.Pointer(&out)))
 		return 1
 	}
 
 	stringified := string(out)
 	if stringified == "" {
 		msg := "The remote repository is not configured."
-		commander.Println(msg)
+		fmt.Printf("%s", msg)
 		return 1
 	}
 
@@ -57,13 +47,13 @@ func _main(commander ICommander) int {
 	origin := splited[0]
 	originURL, err := gro.GetRepoURL(origin)
 	if err != nil {
-		commander.PrintErr(err)
+		fmt.Printf("%s", err)
 		return 1
 	}
 
 	error := commander.Open(originURL)
 	if err != nil {
-		commander.PrintErr(error)
+		fmt.Printf("%v", error)
 		return 1
 	}
 
