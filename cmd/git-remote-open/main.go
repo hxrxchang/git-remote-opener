@@ -34,17 +34,14 @@ func _main(commander ICommander) int {
 		fmt.Printf("%s", *(*string)(unsafe.Pointer(&out)))
 		return 1
 	}
-
-	stringified := string(out)
-	if stringified == "" {
+	strout := string(out)
+	if strout == "" {
 		msg := "The remote repository is not configured."
 		fmt.Printf("%s", msg)
 		return 1
 	}
+	origin := strings.Split(strout, "\n")[0]
 
-	replaced := strings.Replace(stringified, `\n`, "\n", -1)
-	splited := strings.Split(replaced, "\n")
-	origin := splited[0]
 	originURL, err := gro.GetRepoURL(origin)
 	if err != nil {
 		fmt.Printf("%s", err)
