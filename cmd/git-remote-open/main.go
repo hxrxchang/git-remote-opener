@@ -1,54 +1,52 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
-	"os/exec"
-	"strings"
-	"unsafe"
 
+	"github.com/go-git/go-git/v5"
 	gro "github.com/hxrxchang/git-remote-opener/v3"
 	"github.com/skratchdot/open-golang/open"
 )
 
-type ICommander interface {
-	GetGitRemoteInfo() ([]byte, error)
-	Open(string) error
+
+func GetGitRemoteInfo() (string, error) {
+	r, err := git.PlainOpen(".")
+	if err != nil {
+		return "", err
+	}
+	remotes, err := r.Remotes()
+	if err != nil {
+		return "", err
+	}
+
+	if len(remotes) == 0 {
+		return "", errors.New("remote repository is not configured")
+	}
+
+	return remotes[0].Config().URLs[0], err
 }
 
-type Commander struct{}
-
-func (c *Commander) GetGitRemoteInfo() ([]byte, error) {
-	out, err := exec.Command("git", "remote", "-v").CombinedOutput()
-	return out, err
-}
-
-func (c *Commander) Open(url string) error {
+func Open(url string) error {
 	err := open.Run(url)
 	return err
 }
 
-func _main(commander ICommander) int {
-	out, err := commander.GetGitRemoteInfo()
-	if err != nil {
-		fmt.Printf("%s", *(*string)(unsafe.Pointer(&out)))
-		return 1
-	}
-	strout := string(out)
-	if strout == "" {
-		msg := "The remote repository is not configured."
-		fmt.Printf("%s", msg)
-		return 1
-	}
-	origin := strings.Split(strout, "\n")[0]
-
-	originURL, err := gro.GetRepoURL(origin)
+func _main() int {
+	remote, err := GetGitRemoteInfo()
 	if err != nil {
 		fmt.Printf("%s", err)
 		return 1
 	}
 
-	error := commander.Open(originURL)
+	originURL, err := gro.GetRepoURL(remote)
+	if err != nil {
+		fmt.Printf("%s", err)
+		return 1
+	}
+
+	error := Open(originURL)
 	if err != nil {
 		fmt.Printf("%v", error)
 		return 1
@@ -58,5 +56,5 @@ func _main(commander ICommander) int {
 }
 
 func main() {
-	os.Exit(_main(&Commander{}))
+	os.Exit(_main())
 }

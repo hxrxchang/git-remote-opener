@@ -5,7 +5,7 @@ import (
 )
 
 func TestGetRepoURLWithSshString(t *testing.T) {
-	result, err := GetRepoURL("origin  git@github.com:hxrxchang/git-remote-opener.git (fetch)")
+	result, err := GetRepoURL("git@github.com:hxrxchang/git-remote-opener.git (fetch)")
 	if err != nil {
 		t.Error(err)
 	}
@@ -15,7 +15,7 @@ func TestGetRepoURLWithSshString(t *testing.T) {
 }
 
 func TestGetRepoURLWithHttpsString(t *testing.T) {
-	result, err := GetRepoURL("origin	https://github.com/hxrxchang/git-remote-opener.git (fetch)")
+	result, err := GetRepoURL("https://github.com/hxrxchang/git-remote-opener.git (fetch)")
 	if err != nil {
 		t.Error(err)
 	}
