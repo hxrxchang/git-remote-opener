@@ -10,7 +10,6 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-
 func GetGitRemoteInfo() (string, error) {
 	r, err := git.PlainOpen(".")
 	if err != nil {
