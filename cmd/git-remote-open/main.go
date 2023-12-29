@@ -27,11 +27,6 @@ func GetGitRemoteInfo() (string, error) {
 	return remotes[0].Config().URLs[0], err
 }
 
-func Open(url string) error {
-	err := open.Run(url)
-	return err
-}
-
 func _main() int {
 	remote, err := GetGitRemoteInfo()
 	if err != nil {
@@ -45,9 +40,9 @@ func _main() int {
 		return 1
 	}
 
-	error := Open(originURL)
+	err = open.Run(originURL)
 	if err != nil {
-		fmt.Printf("%v", error)
+		fmt.Printf("%v", err)
 		return 1
 	}
 
